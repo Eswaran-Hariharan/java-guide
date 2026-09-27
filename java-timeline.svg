@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 620" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#f3f5f7"/></linearGradient>
+    <style>
+      .ttl{font-size:22px;font-weight:800;fill:#1b2a3a}
+      .sub{font-size:12px;fill:#5a6b7b}
+      .ver{font-size:15px;font-weight:800;fill:#fff}
+      .yr{font-size:10.5px;fill:#5a6b7b}
+      .feat{font-size:11px;fill:#233}.feath{font-size:11px;font-weight:700;fill:#c1440e}
+      .lts{font-size:9.5px;font-weight:800;fill:#0a7d5a}
+      .tag{font-size:10px;font-weight:700}
+    </style>
+  </defs>
+  <rect width="1180" height="620" fill="url(#bg)"/>
+  <text x="40" y="46" class="ttl">Java Evolution — Java 8 to Today</text>
+  <text x="40" y="68" class="sub">🟠 LTS = Long-Term Support (run in production) · ⚪ feature releases debut new features · new release every 6 months</text>
+
+  <!-- timeline spine -->
+  <line x1="70" y1="300" x2="1120" y2="300" stroke="#c3ccd6" stroke-width="4"/>
+
+  <!-- helper: LTS nodes = orange big; non-LTS = grey small -->
+  <!-- Java 8 LTS -->
+  <circle cx="120" cy="300" r="30" fill="#e2711d"/>
+  <text x="120" y="306" text-anchor="middle" class="ver">8</text>
+  <text x="120" y="352" text-anchor="middle" class="yr">2014</text>
+  <text x="120" y="368" text-anchor="middle" class="lts">LTS</text>
+  <g transform="translate(120,150)"><rect x="-72" y="0" width="144" height="118" rx="8" fill="#fff5ec" stroke="#e2711d" stroke-width="1.4"/>
+    <text x="0" y="20" text-anchor="middle" class="feath">Functional Java</text>
+    <text x="-62" y="40" class="feat">• Lambdas</text><text x="-62" y="57" class="feat">• Streams</text>
+    <text x="-62" y="74" class="feat">• Optional</text><text x="-62" y="91" class="feat">• java.time</text>
+    <text x="-62" y="108" class="feat">• Default methods</text>
+  </g>
+  <line x1="120" y1="268" x2="120" y2="270" stroke="#e2711d" stroke-width="2"/>
+
+  <!-- Java 9-10 non-LTS -->
+  <circle cx="270" cy="300" r="20" fill="#9aa7b5"/>
+  <text x="270" y="305" text-anchor="middle" class="ver" style="font-size:12px">9·10</text>
+  <text x="270" y="342" text-anchor="middle" class="yr">2017–18</text>
+  <g transform="translate(270,196)"><rect x="-66" y="0" width="132" height="72" rx="8" fill="#f4f6f8" stroke="#9aa7b5" stroke-width="1.2"/>
+    <text x="0" y="19" text-anchor="middle" class="tag" fill="#556">Modularity</text>
+    <text x="-56" y="38" class="feat">• Modules (Jigsaw)</text>
+    <text x="-56" y="55" class="feat">• JShell · var</text>
+  </g>
+
+  <!-- Java 11 LTS -->
+  <circle cx="420" cy="300" r="30" fill="#e2711d"/>
+  <text x="420" y="306" text-anchor="middle" class="ver">11</text>
+  <text x="420" y="352" text-anchor="middle" class="yr">2018</text>
+  <text x="420" y="368" text-anchor="middle" class="lts">LTS</text>
+  <g transform="translate(420,170)"><rect x="-70" y="0" width="140" height="98" rx="8" fill="#fff5ec" stroke="#e2711d" stroke-width="1.4"/>
+    <text x="0" y="20" text-anchor="middle" class="feath">Modern baseline</text>
+    <text x="-60" y="40" class="feat">• Run .java files</text>
+    <text x="-60" y="57" class="feat">• New HttpClient</text>
+    <text x="-60" y="74" class="feat">• String helpers</text>
+    <text x="-60" y="91" class="feat">• Perf / GC</text>
+  </g>
+
+  <!-- Java 14-16 non-LTS -->
+  <circle cx="570" cy="300" r="20" fill="#9aa7b5"/>
+  <text x="570" y="305" text-anchor="middle" class="ver" style="font-size:11px">14-16</text>
+  <text x="570" y="342" text-anchor="middle" class="yr">2020–21</text>
+  <g transform="translate(570,188)"><rect x="-70" y="0" width="140" height="80" rx="8" fill="#f4f6f8" stroke="#9aa7b5" stroke-width="1.2"/>
+    <text x="0" y="19" text-anchor="middle" class="tag" fill="#556">Concise syntax</text>
+    <text x="-60" y="38" class="feat">• switch expr</text>
+    <text x="-60" y="55" class="feat">• text blocks</text>
+    <text x="-60" y="72" class="feat">• records (preview)</text>
+  </g>
+
+  <!-- Java 17 LTS -->
+  <circle cx="720" cy="300" r="30" fill="#e2711d"/>
+  <text x="720" y="306" text-anchor="middle" class="ver">17</text>
+  <text x="720" y="352" text-anchor="middle" class="yr">2021</text>
+  <text x="720" y="368" text-anchor="middle" class="lts">LTS</text>
+  <g transform="translate(720,170)"><rect x="-72" y="0" width="144" height="98" rx="8" fill="#fff5ec" stroke="#e2711d" stroke-width="1.4"/>
+    <text x="0" y="20" text-anchor="middle" class="feath">Records &amp; more</text>
+    <text x="-62" y="40" class="feat">• Records (final)</text>
+    <text x="-62" y="57" class="feat">• Sealed classes</text>
+    <text x="-62" y="74" class="feat">• Pattern matching</text>
+    <text x="-62" y="91" class="feat">• Text blocks</text>
+  </g>
+
+  <!-- Java 21 LTS -->
+  <circle cx="870" cy="300" r="30" fill="#e2711d"/>
+  <text x="870" y="306" text-anchor="middle" class="ver">21</text>
+  <text x="870" y="352" text-anchor="middle" class="yr">2023</text>
+  <text x="870" y="368" text-anchor="middle" class="lts">LTS</text>
+  <g transform="translate(870,164)"><rect x="-74" y="0" width="148" height="104" rx="8" fill="#fff5ec" stroke="#e2711d" stroke-width="1.8"/>
+    <text x="0" y="20" text-anchor="middle" class="feath">Virtual Threads ⭐</text>
+    <text x="-64" y="40" class="feat">• Millions of threads</text>
+    <text x="-64" y="57" class="feat">• Pattern switch</text>
+    <text x="-64" y="74" class="feat">• Record patterns</text>
+    <text x="-64" y="91" class="feat">• Sequenced coll.</text>
+  </g>
+
+  <!-- Java 25 LTS (latest) -->
+  <circle cx="1020" cy="300" r="32" fill="#c1440e" stroke="#7d2a08" stroke-width="2"/>
+  <text x="1020" y="306" text-anchor="middle" class="ver">25</text>
+  <text x="1020" y="354" text-anchor="middle" class="yr">2025</text>
+  <text x="1020" y="370" text-anchor="middle" class="lts" fill="#c1440e">LATEST LTS</text>
+  <g transform="translate(1020,158)"><rect x="-76" y="0" width="152" height="112" rx="8" fill="#ffe9dc" stroke="#c1440e" stroke-width="1.8"/>
+    <text x="0" y="20" text-anchor="middle" class="feath">Latest LTS</text>
+    <text x="-66" y="40" class="feat">• Structured concurrency</text>
+    <text x="-66" y="57" class="feat">• Scoped values</text>
+    <text x="-66" y="74" class="feat">• Simple main()</text>
+    <text x="-66" y="91" class="feat">• Startup / memory</text>
+  </g>
+
+  <!-- 26/27 next -->
+  <circle cx="1120" cy="300" r="16" fill="#c3ccd6"/>
+  <text x="1120" y="305" text-anchor="middle" class="ver" style="font-size:10px;fill:#556">26·27</text>
+  <text x="1120" y="338" text-anchor="middle" class="yr">2026</text>
+
+  <!-- LTS connector band -->
+  <text x="70" y="430" class="sub" font-weight="700" fill="#c1440e">The LTS line (what teams run in production):</text>
+  <text x="70" y="452" class="sub">Java 8 → 11 → 17 → 21 → 25 → (29 next). Non-LTS releases in between are where features debut, then graduate into the next LTS.</text>
+
+  <!-- legend -->
+  <g transform="translate(70,486)">
+    <circle cx="10" cy="6" r="10" fill="#e2711d"/><text x="28" y="10" class="sub">LTS release — long-term support, production</text>
+    <circle cx="360" cy="6" r="8" fill="#9aa7b5"/><text x="378" y="10" class="sub">Feature release — new features debut</text>
+    <circle cx="700" cy="6" r="10" fill="#c1440e"/><text x="718" y="10" class="sub">Current latest LTS (Java 25)</text>
+  </g>
+</svg>
