@@ -41,6 +41,46 @@ timeline
 
 ---
 
+## How the JVM works internally
+
+Before the version-by-version tour, here's the engine underneath it all. When you run Java, your `.java` file is compiled by `javac` into **bytecode** (`.class`), and the **JVM (Java Virtual Machine)** loads, stores, and executes that bytecode. "Write once, run anywhere" works because the *same* bytecode runs on any JVM.
+
+![JVM Internal Architecture](jvm-architecture.svg)
+
+The JVM has three main subsystems (color-coded in the diagram):
+
+### ① Class Loader subsystem
+Finds your classes and gets them ready, in three phases:
+- **Loading** — reads the `.class` bytecode. Three loaders work in a parent-delegation chain: **Bootstrap** (core JDK) → **Platform/Extension** → **Application** (your classpath).
+- **Linking** — **verify** (is the bytecode safe/valid?), **prepare** (allocate static fields), **resolve** (link references).
+- **Initialization** — runs static initializers and sets static values.
+
+### ② Runtime Data Areas (JVM memory)
+Where everything lives while your program runs:
+
+| Area | Shared? | Holds |
+|------|---------|-------|
+| **Heap** | shared by all threads | All **objects** and arrays; split into Young + Old generations; cleaned by the GC |
+| **Metaspace** | shared | Class metadata & method info (replaced "PermGen" in Java 8) |
+| **JVM Stack** | one per thread | Method call frames, local variables |
+| **PC Register** | one per thread | Address of the currently executing instruction |
+| **Native Method Stack** | one per thread | State for native (C/C++) calls |
+
+Most memory issues you'll hear about — `OutOfMemoryError`, GC tuning — are about the **Heap**.
+
+### ③ Execution Engine
+Turns bytecode into real work:
+- **Interpreter** — runs bytecode instruction by instruction. Starts fast, but slower for code that runs a lot.
+- **JIT (Just-In-Time) Compiler** — spots "hot" methods and compiles them to **native machine code** (tiers C1 → C2). This is why a Java app *speeds up* after warming up.
+- **Garbage Collector (GC)** — automatically frees objects on the Heap you no longer use, so you don't manage memory by hand. Pick a collector per workload: **G1** (default), **ZGC** (low pause), **Parallel** (throughput), **Serial** (small apps).
+
+### ④ Native interface
+- **JNI (Java Native Interface)** + **Native Libraries** let Java call into OS-level C/C++ code when needed.
+
+> **JDK vs JRE vs JVM:** the **JVM** runs bytecode; the **JRE** = JVM + core libraries (enough to *run* Java); the **JDK** = JRE + developer tools like `javac` and `jar` (enough to *build* Java). You install the JDK to develop.
+
+---
+
 ## Java 8 (2014) — the release that changed everything
 
 Java 8 is still the most important release to understand, because it introduced **functional programming** to Java. Even modern code builds on these ideas.

@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef1f5"/></linearGradient>
+    <linearGradient id="load" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5b8def"/><stop offset="1" stop-color="#3f6fd1"/></linearGradient>
+    <linearGradient id="mem" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f5a623"/><stop offset="1" stop-color="#ec7211"/></linearGradient>
+    <linearGradient id="exec" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#12b886"/><stop offset="1" stop-color="#0a8f6f"/></linearGradient>
+    <linearGradient id="nat" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9775fa"/><stop offset="1" stop-color="#7048e8"/></linearGradient>
+    <marker id="ar" markerWidth="11" markerHeight="11" refX="8" refY="4" orient="auto"><path d="M0,0 L9,4 L0,8 Z" fill="#334"/></marker>
+    <style>
+      .h{font-size:15px;font-weight:800;fill:#fff}.sub{font-size:11px;fill:#fff;opacity:.92}
+      .box{font-size:12.5px;font-weight:700;fill:#fff}.bs{font-size:10px;fill:#fff;opacity:.9}
+      .lane{font-size:12px;font-weight:800;letter-spacing:.6px}
+      .cap{font-size:11px;fill:#5a6b7b}.dark{font-size:12.5px;font-weight:700;fill:#233}
+    </style>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <text x="40" y="44" font-size="24" font-weight="800" fill="#1b2a3a">JVM Internal Architecture — How Java Runs</text>
+  <text x="40" y="68" class="cap">Your .java code → compiled to bytecode → loaded, stored in memory, and executed by the JVM. Colors group the three subsystems.</text>
+
+  <!-- ===== TOP: source -> bytecode ===== -->
+  <g transform="translate(40,90)">
+    <rect width="180" height="66" rx="10" fill="#fff" stroke="#334" stroke-width="1.6"/>
+    <text x="16" y="28" class="dark">Hello.java</text><text x="16" y="46" class="cap">your source code</text><text x="16" y="60" class="cap">javac compiles →</text>
+  </g>
+  <g transform="translate(250,90)">
+    <rect width="180" height="66" rx="10" fill="#fff" stroke="#334" stroke-width="1.6"/>
+    <text x="16" y="28" class="dark">Hello.class</text><text x="16" y="46" class="cap">bytecode</text><text x="16" y="60" class="cap">portable, JVM-ready</text>
+  </g>
+  <line x1="220" y1="123" x2="250" y2="123" stroke="#334" stroke-width="2" marker-end="url(#ar)"/>
+  <line x1="340" y1="156" x2="340" y2="188" stroke="#334" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="352" y="176" class="cap">bytecode enters the JVM ↓</text>
+
+  <!-- ===== JVM container ===== -->
+  <rect x="40" y="180" width="1120" height="560" rx="16" fill="#f8fafc" stroke="#334" stroke-width="2"/>
+  <rect x="56" y="168" width="180" height="26" rx="6" fill="#1b2a3a"/><text x="70" y="186" fill="#fff" font-size="12" font-weight="700">Java Virtual Machine</text>
+
+  <!-- ===== 1. CLASS LOADER SUBSYSTEM (blue) ===== -->
+  <rect x="64" y="206" width="1072" height="118" rx="12" fill="#eef4ff" stroke="#3f6fd1" stroke-width="1.5"/>
+  <text x="80" y="228" class="lane" fill="#2f57b8">① CLASS LOADER SUBSYSTEM — finds, verifies &amp; prepares classes</text>
+  <g transform="translate(80,240)"><rect width="200" height="70" rx="10" fill="url(#load)"/><text x="16" y="28" class="box">Loading</text><text x="16" y="46" class="bs">Bootstrap → Extension</text><text x="16" y="60" class="bs">→ Application loaders</text></g>
+  <g transform="translate(300,240)"><rect width="200" height="70" rx="10" fill="url(#load)"/><text x="16" y="28" class="box">Linking</text><text x="16" y="46" class="bs">Verify · Prepare ·</text><text x="16" y="60" class="bs">Resolve</text></g>
+  <g transform="translate(520,240)"><rect width="200" height="70" rx="10" fill="url(#load)"/><text x="16" y="28" class="box">Initialization</text><text x="16" y="46" class="bs">Run static blocks,</text><text x="16" y="60" class="bs">set static fields</text></g>
+  <g transform="translate(740,240)"><rect width="376" height="70" rx="10" fill="#dbe6fb" stroke="#3f6fd1" stroke-width="1.2"/><text x="16" y="26" class="dark">Three built-in loaders</text><text x="16" y="45" class="cap">Bootstrap (core JDK) → Platform/Ext → Application (your classpath)</text><text x="16" y="61" class="cap">parent-delegation model keeps classes unique &amp; safe</text></g>
+  <line x1="600" y1="324" x2="600" y2="348" stroke="#334" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- ===== 2. RUNTIME DATA AREAS (orange) ===== -->
+  <rect x="64" y="344" width="1072" height="180" rx="12" fill="#fff6ec" stroke="#ec7211" stroke-width="1.5"/>
+  <text x="80" y="366" class="lane" fill="#c1440e">② RUNTIME DATA AREAS — the JVM's memory at runtime</text>
+
+  <!-- shared -->
+  <text x="80" y="388" class="cap" font-weight="700">Shared across all threads</text>
+  <g transform="translate(80,396)"><rect width="300" height="108" rx="10" fill="url(#mem)"/><text x="16" y="30" class="box">Heap</text><text x="16" y="50" class="bs">All objects &amp; arrays live here.</text><text x="16" y="68" class="bs">Divided into Young + Old gen.</text><text x="16" y="90" class="bs">Cleaned by Garbage Collector.</text></g>
+  <g transform="translate(392,396)"><rect width="230" height="108" rx="10" fill="url(#mem)"/><text x="16" y="30" class="box">Metaspace</text><text x="16" y="50" class="bs">Class metadata,</text><text x="16" y="68" class="bs">method info, static data.</text><text x="16" y="90" class="bs">(replaced PermGen in J8)</text></g>
+
+  <!-- per-thread -->
+  <text x="640" y="388" class="cap" font-weight="700">Per-thread (one set each)</text>
+  <g transform="translate(640,396)"><rect width="150" height="108" rx="10" fill="#f7b955"/><text x="14" y="28" class="box">JVM Stack</text><text x="14" y="46" class="bs">stack frames,</text><text x="14" y="62" class="bs">locals, method</text><text x="14" y="78" class="bs">call data</text></g>
+  <g transform="translate(802,396)"><rect width="150" height="108" rx="10" fill="#f7b955"/><text x="14" y="28" class="box">PC Register</text><text x="14" y="46" class="bs">address of the</text><text x="14" y="62" class="bs">current</text><text x="14" y="78" class="bs">instruction</text></g>
+  <g transform="translate(964,396)"><rect width="152" height="108" rx="10" fill="#f7b955"/><text x="14" y="28" class="box">Native Method</text><text x="14" y="46" class="bs">Stack</text><text x="14" y="62" class="bs">for native (C/C++)</text><text x="14" y="78" class="bs">calls via JNI</text></g>
+  <line x1="600" y1="524" x2="600" y2="548" stroke="#334" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- ===== 3. EXECUTION ENGINE (green) ===== -->
+  <rect x="64" y="544" width="850" height="180" rx="12" fill="#e9fbf4" stroke="#0a8f6f" stroke-width="1.5"/>
+  <text x="80" y="566" class="lane" fill="#087a5e">③ EXECUTION ENGINE — turns bytecode into action</text>
+  <g transform="translate(80,578)"><rect width="240" height="120" rx="10" fill="url(#exec)"/><text x="16" y="30" class="box">Interpreter</text><text x="16" y="50" class="bs">Reads &amp; runs bytecode</text><text x="16" y="68" class="bs">line by line. Fast start,</text><text x="16" y="86" class="bs">slower for hot code.</text></g>
+  <g transform="translate(336,578)"><rect width="260" height="120" rx="10" fill="url(#exec)"/><text x="16" y="30" class="box">JIT Compiler</text><text x="16" y="50" class="bs">Compiles "hot" methods to</text><text x="16" y="68" class="bs">native machine code for</text><text x="16" y="86" class="bs">speed (C1 + C2 tiers).</text><text x="16" y="106" class="bs">This is why Java gets faster hot.</text></g>
+  <g transform="translate(612,578)"><rect width="284" height="120" rx="10" fill="url(#exec)"/><text x="16" y="30" class="box">Garbage Collector (GC)</text><text x="16" y="50" class="bs">Automatically frees unused</text><text x="16" y="68" class="bs">objects on the Heap.</text><text x="16" y="86" class="bs">G1, ZGC, Parallel, Serial —</text><text x="16" y="106" class="bs">pick per workload.</text></g>
+
+  <!-- ===== 4. NATIVE (purple) ===== -->
+  <rect x="930" y="544" width="206" height="180" rx="12" fill="#f3effe" stroke="#7048e8" stroke-width="1.5"/>
+  <text x="946" y="566" class="lane" fill="#5b34c9">④ NATIVE</text>
+  <g transform="translate(946,578)"><rect width="174" height="56" rx="10" fill="url(#nat)"/><text x="14" y="26" class="box">JNI</text><text x="14" y="44" class="bs">Java Native Interface</text></g>
+  <g transform="translate(946,646)"><rect width="174" height="56" rx="10" fill="url(#nat)"/><text x="14" y="26" class="box">Native Libraries</text><text x="14" y="44" class="bs">OS / C / C++ code</text></g>
+  <line x1="896" y1="638" x2="944" y2="638" stroke="#334" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- JDK/JRE/JVM footnote -->
+  <text x="40" y="768" class="cap"><tspan font-weight="700" fill="#233">Big picture:</tspan>  JDK  =  JRE ( = JVM + core libraries )  +  developer tools (javac, jdb, jar). You write .java → javac makes .class bytecode → the JVM loads, stores, and executes it.</text>
+</svg>
